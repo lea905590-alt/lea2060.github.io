@@ -1,6 +1,207 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mon classeur numérique</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --bg-card: #10161d;
+    --text: #d6e6df;
+    --text-muted: #7c93a8;
+    --accent: #39ff8f;
+    --accent-hover: #7fffb0;
+    --accent-2: #47c8ff;
+    --border: #1f2b35;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --grid-line: rgba(57, 255, 143, 0.07);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      radial-gradient(circle at 20% 15%, rgba(71, 200, 255, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(57, 255, 143, 0.08), transparent 40%);
+    background-size: 32px 32px, 32px 32px, cover, cover;
+    color: var(--text);
+    font-family: "Fira Code", "Consolas", "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 6px rgba(57, 255, 143, 0.5));
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    margin: 0 0 8px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  h1::before {
+    content: "> ";
+    color: var(--accent-2);
+  }
+
+  h1::after {
+    content: "_";
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 16px rgba(57, 255, 143, 0.25);
+    border-color: var(--accent);
+  }
+
+  .card:hover .label {
+    color: var(--accent);
+  }
+
+  .card .emoji {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .card .label {
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.15s ease;
+  }
+
+  .card .desc {
+    display: block;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 48px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  footer::before {
+    content: "// ";
+    color: var(--accent-2);
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="icon">📘</div>
+      <h1>Mon classeur numérique</h1>
+      <p class="subtitle">Ce site me permet d'organiser mes ressources de SIN : travaux pratiques, cours, projets et révisions.</p>
+    </header>
+
+    <div class="grid">
+      <a class="card" href="https://marguerite2060.alwaysdata.net/document/test.txt">
+        <span class="emoji">🧪</span>
+        <span>
+          <span class="label">Mes TP</span>
+          <span class="desc">Travaux pratiques</span>
+        </span>
+      </a>
+      <a class="card" href="https://marguerite2060.alwaysdata.net/document/test.txt">
+        <span class="emoji">📖</span>
+        <span>
+          <span class="label">Mes cours</span>
+          <span class="desc">Notes et supports de cours</span>
+        </span>
+      </a>
+      <a class="card" href="https://marguerite2060.alwaysdata.net/document/test.txt">
+        <span class="emoji">🛠️</span>
+        <span>
+          <span class="label">Mes projets</span>
+          <span class="desc">Projets réalisés</span>
+        </span>
+      </a>
+      <a class="card" href="https://marguerite2060.alwaysdata.net/document/test.txt">
+        <span class="emoji">📝</span>
+        <span>
+          <span class="label">Mes révisions</span>
+          <span class="desc">Fiches et rappels</span>
+        </span>
+      </a>
+    </div>
+
+    <footer>Classeur numérique — matière SIN</footer>
+  </div>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
   <link rel="stylesheet" href="style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
